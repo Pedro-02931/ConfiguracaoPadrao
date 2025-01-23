@@ -30,15 +30,15 @@ SOconfig() {
     local VAR_NAME="PARALLEL_DOWNLOADS_CONFIGURADO" # Variável de verificação
 
     # Verifica se já foi feito, pra debug
-    if [[ -n ${!VAR_NAME} ]]; então
+    if [[ -n ${!VAR_NAME} ]]; then
         echo "Já feito!"
         return
     fi
 
     # Verifica se a linha já está criada
-    if grep -q "^ParallelDownloads" "$FILE"; então
+    if grep -q "^ParallelDownloads" "$FILE"; then
         read -p "Deseja mudar? " choice
-        if [[ "$choice" =~ ^[Yy]$ ]]; então
+        if [[ "$choice" =~ ^[Yy]$ ]]; then
             read -p "Quantos downloads paralelos? " num
             sed -i "s/^ParallelDownloads.*/ParallelDownloads = $num/" "$FILE"
             echo "ParallelDownloads atualizado para $num"
@@ -74,7 +74,7 @@ DevSystemConfig() {
     fi
     
     # O Arch é paranóico, não permite que você faça certas builds como root.
-    # Por isso, primeiro instalo o básico e configuro o núcleo do sistema como root.*
+    # Por isso, primeiro instalo o básico e configuro o núcleo do sistema como root.
     
     pacman -S --noconfirm \
       git base-devel cargo neovim \
